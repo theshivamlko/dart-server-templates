@@ -1,6 +1,7 @@
 name: Dev Environment Workflow
 # Events that trigger workflow
-on: workflow_dispatch
+on: push
+  
 jobs: 
   DevServer: # Custom Jobs name
    runs-on: ubuntu-latest  # Environment to run
@@ -8,5 +9,10 @@ jobs:
     - name: Print greeting  # Name of script
       run : echo "Hello World"
     - name: Print Published
-      run: echo "DONE Published..." | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
+      run: echo "DONE Published..."
+      # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
+    - name: List all folders 
+      run: echo ls -a 
+
+
       
