@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_server_templates/dart_server_templates.dart' as dart_server_templates;
+import 'package:dart_server_templates/endpoint1.dart';
 
 void main(List<String> arguments)async {
 
@@ -11,8 +12,13 @@ void main(List<String> arguments)async {
   print('Listening on http://localhost:${server.port}');
  
   await for (var request in server) {
-    handleRequest(request);
+
+          Endpoint1().hello();
+
+  //  handleRequest(request);
   }
+
+ 
 
  
 }
