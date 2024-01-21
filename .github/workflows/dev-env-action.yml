@@ -20,6 +20,8 @@ jobs:
       uses: dart-lang/setup-dart@v1.6.0
       with: 
         sdk: 3.2
+    - name: Dart Information 
+      run: dart info   
     - name: Dart Pub Get
       run: dart pub get  
     - name: Dart Test
