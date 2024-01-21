@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_server_templates/dart_server_templates.dart'
@@ -13,8 +14,10 @@ void main(List<String> arguments) async {
 
   await for (var request in server) {
     String query = request.uri.queryParameters["query"] ?? "N/A";
+    String color = request.uri.queryParameters["color"] ?? "N/A";
     request.response
-      ..write(await Endpoint1().hello(query))
+    ..headers.contentType = ContentType.html
+      ..write(await Endpoint1().hello(query, color))
       ..close();
 
     //  handleRequest(request);
@@ -24,6 +27,7 @@ void main(List<String> arguments) async {
 void handleRequest(HttpRequest request) {
   // Handle different HTTP requests here
   request.response
+    ..headers.contentType = ContentType.html
     ..write('Hello world: ${dart_server_templates.calculate()}!')
     ..close();
 }
