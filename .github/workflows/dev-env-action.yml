@@ -12,7 +12,9 @@ jobs:
       run: echo "DONE Published..."
       # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
     - name: List all folders 
-      run:  ls -a 
+      run:  ls -alR
+    - name: Get Code
+      run:   
 
 
       
