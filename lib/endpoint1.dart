@@ -1,9 +1,6 @@
-import 'package:serverpod/serverpod.dart';
-
-class Endpoint1 extends Endpoint {
+class Endpoint1 {
   // add enpoint methods here which return json data as Hello text
-  Future<String> hello() async {
-    print("Hello print");
-    return 'Hello';
+  Future<String> hello(String query) async {
+    return 'Hello $query';
   }
 }
