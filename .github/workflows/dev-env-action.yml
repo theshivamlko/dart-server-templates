@@ -8,4 +8,5 @@ jobs:
     - name: Print greeting  # Name of script
       run : echo "Hello World"
     - name: Print Published
-      run: echo "DONE Published..."
+      run: echo "DONE Published..." | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
+      
