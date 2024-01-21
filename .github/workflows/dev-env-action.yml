@@ -1,0 +1,12 @@
+name: Dev Environment Workflow
+# Events that trigger workflow
+on: workflow_dispatch
+jobs: 
+	DevServer:
+		runs-on: ubuntu-latest
+		steps: 
+			- name: Print greeting
+			  run : echo "Hello World"
+			- name: Print Published
+			  run: echo "DONE Published..."
+			
