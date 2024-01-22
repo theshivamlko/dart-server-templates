@@ -19,7 +19,7 @@ jobs:
     - name: Setup Dart SDK 3.2
       uses: dart-lang/setup-dart@v1.6.0
       with: 
-        sdk: 3.2
+        sdk: stable # 3.2
     - name: Dart Information 
       run: dart info   
     - name: Dart Pub Get
