@@ -1,8 +1,9 @@
 name: Dev Environment Workflow
-# Events that trigger workflow
-on: [push,workflow_dispatch]
+ # Events that trigger workflow
+ # on: [push,workflow_dispatch]
+on: push
   
-jobs: 
+jobs:  
   DevServer: # Custom Jobs name
    runs-on: ubuntu-latest  # Environment to run
    steps: 
