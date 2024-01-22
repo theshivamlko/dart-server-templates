@@ -25,8 +25,35 @@ jobs:
     - name: Dart Pub Get
       run: dart pub get  
     - name: Dart Test
-      run: dart test   
-
+      run: dart test 
+      
+  DartServerDeploy:
+    runs-on: ubuntu-latest  # Environment to run
+    steps: 
+      - name: Print greeting  # Name of script
+        run : echo "Hello World"
+      - name: Print Published
+        run: echo "DONE Published..."
+        # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
+      - name: List all folders 
+        run:  ls -alR
+      - name: Get Code
+        uses: actions/checkout@v4
+        # no need of with as by default same repo will be used where yml file is
+      - name: Setup Dart SDK 3.2
+        uses: dart-lang/setup-dart@v1.6.0
+        with: 
+          sdk: 3.2
+      - name: Dart Information 
+        run: dart info   
+      - name: Dart Pub Get
+        run: dart pub get  
+      - name: Dart Build
+        run: |  
+              mkdir build
+              dart compile exe bin/main.dart -o build/server   
+      - name: Deploy
+        run: echo "Deploying..."        
 
 
       
