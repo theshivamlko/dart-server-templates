@@ -1,6 +1,6 @@
 name: Dev Environment Workflow
 # Events that trigger workflow
-on: push
+on: [push,workflow_dispatch]
   
 jobs: 
   DevServer: # Custom Jobs name
