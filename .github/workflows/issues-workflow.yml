@@ -1,0 +1,29 @@
+name: Issue Workflow
+on: issues
+
+jobs:
+ output-info:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Outout event details
+          run : | 
+             echo "${{toJson(github)}}" 
+             echo "====================================================="
+             echo "${{toJSON(github.event)}}   ${{github.event_name}}   ${{github.event_path}}" 
+             echo "====================================================="
+             echo ${{toJson(env)}}
+             echo "====================================================="
+             echo ${{toJson(vars)}}
+             echo "====================================================="
+             echo ${{toJson(runner)}}
+             echo "====================================================="
+             echo ${{toJson(job)}}
+             echo "====================================================="
+             echo ${{toJson(matrix)}}
+             echo "====================================================="
+             echo ${{toJson(needs)}}
+             echo "====================================================="
+             echo ${{toJson(inputs)}}
+             echo "====================================================="
+
+
