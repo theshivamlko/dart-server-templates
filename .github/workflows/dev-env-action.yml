@@ -28,6 +28,7 @@ jobs:
       run: dart test 
       
   DartServerDeploy:
+    needs: DevServer  # waits for given job to finish
     runs-on: ubuntu-latest  # Environment to run
     steps: 
       - name: Print greeting  # Name of script
