@@ -7,6 +7,12 @@ on:
       types:
         - opened
   workflow_dispatch:
+  push:
+    branches: 
+        - main
+        - branch*
+    tags:
+      - build v*      
             
  
 jobs:  
