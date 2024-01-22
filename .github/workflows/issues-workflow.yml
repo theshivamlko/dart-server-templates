@@ -7,23 +7,23 @@ jobs:
     steps:
         - name: Outout event details
           run : | 
-             echo "${{github}}" 
+             echo "${{toJson(github)}}" 
              echo "====================================================="
-             echo "${{github.event}}   ${{github.event_name}}   ${{github.event_path}}" 
+             echo "${{toJSON(github.event)}}   ${{github.event_name}}   ${{github.event_path}}" 
              echo "====================================================="
-             echo ${{env}}
+             echo ${{toJson(env)}}
              echo "====================================================="
-             echo ${{vars}}
+             echo ${{toJson(vars)}}
              echo "====================================================="
-             echo ${{runner}}
+             echo ${{toJson(runner)}}
              echo "====================================================="
-             echo ${{job}}
+             echo ${{toJson(job)}}
              echo "====================================================="
-             echo ${{matrix}}
+             echo ${{toJson(matrix)}}
              echo "====================================================="
-             echo ${{needs}}
+             echo ${{toJson(needs)}}
              echo "====================================================="
-             echo ${{inputs}}
+             echo ${{toJson(inputs)}}
              echo "====================================================="
 
 

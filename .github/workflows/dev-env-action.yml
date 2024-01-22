@@ -1,7 +1,12 @@
 name: Dev Environment Workflow
  # Events that trigger workflow
- # on: [push,workflow_dispatch]
-on: push
+ # on: [push,workflow_dispatch,issues]
+on: 
+  pull_request:
+      types:
+        - opened
+  workflow_dispatch:
+            
   
 jobs:  
   DevServer: # Custom Jobs name
