@@ -50,7 +50,7 @@ jobs:
         run: dart pub get  
       - name: Dart Build
         run: |  
-              mkdir build
+              mkdir -p build/output/release
               dart compile exe bin/main.dart -o build/server   
       - name: Deploy
         run: echo "Deploying..."        
