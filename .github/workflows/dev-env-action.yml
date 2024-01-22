@@ -12,7 +12,10 @@ on:
         - main
         - branch*
     tags:
-      - build v*      
+      - build v*
+    paths-ignore:
+      - '.github/workflows/*'  
+    
             
  
 jobs:  
