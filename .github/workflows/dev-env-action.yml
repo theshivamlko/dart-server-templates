@@ -69,8 +69,14 @@ jobs:
         run: |  
               mkdir -p build/output/release
               dart compile exe bin/main.dart -o build/output/release/server   
-      - name: Deploy
-        run: echo "Deploying..."        
+      - name: Upload artifacts
+        run: echo "Deploying..."    
+      - uses: actions/upload-artifact@v4
+        with: 
+          name: dart-server-build-file@V1
+          path: |
+            build/output/release
+
 
 
       
