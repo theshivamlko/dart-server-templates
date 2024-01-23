@@ -20,7 +20,9 @@ on:
  
 jobs:  
   DevServer: # Custom Jobs name
-   runs-on: ubuntu-latest  # Environment to run
+   runs-on: macos-12  # Environment to run
+   outputs:
+    abc: ${{steps.some-id1.outputs.version}}
    steps: 
     - name: Print greeting  # Name of script
       run : echo "Hello World"
@@ -41,11 +43,19 @@ jobs:
     - name: Dart Pub Get
       run: dart pub get  
     - name: Dart Test
-      run: dart test 
+      run: dart test
+    - name: "Create JSON file to share to other JOBS"
+      id: some-id1
+      run: echo '{version:"1.0.1"}'' >> $GITHUB_OUTPUT  # inbuild variable
+    # - name: "Publish JSON file"
+    #   run: 
+
       
   DartServerDeployMacOS:
     needs: DevServer  # waits for given job to finish
     runs-on: macos-12  # Environment to run
+
+      
     steps: 
       - name: Print greeting  # Name of script
         run : echo "Hello World"
@@ -71,7 +81,7 @@ jobs:
               dart compile exe bin/main.dart -o build/output/release/server   
       - name: Upload artifacts
         run: | 
-          echo "Deploying..."
+          echo "Dowloading..."
           cd build/output/release/
           ls -alR
           cd     
@@ -80,6 +90,14 @@ jobs:
           name: dart-server-build-file@V1
           path: |
             build/output/release
+      - name: "Publish"     
+        run: echo "Publishing..."
+      - uses: actions/download-artifact@v4 #download artifacts from previous jobs
+        with: 
+          name: dart-server-build-file@V1
+      - name: "Output filename"
+        run: echo ${{needs.DevServer.outputs.abc}}
+
 
 
 
