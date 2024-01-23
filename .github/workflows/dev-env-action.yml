@@ -46,7 +46,7 @@ jobs:
       run: dart test
     - name: "Create JSON file to share to other JOBS"
       id: some-id1
-      run: echo "{version:1.0.1}"" >> $GITHUB_OUTPUT  # inbuild variable
+      run: echo "{version:1.0.1}" >> $GITHUB_OUTPUT  # inbuild variable
     # - name: "Publish JSON file"
     #   run: 
 
