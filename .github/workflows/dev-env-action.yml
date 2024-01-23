@@ -45,7 +45,7 @@ jobs:
       
   DartServerDeploy:
     needs: DevServer  # waits for given job to finish
-    runs-on: macos-latest  # Environment to run
+    runs-on: macos-12  # Environment to run
     steps: 
       - name: Print greeting  # Name of script
         run : echo "Hello World"
