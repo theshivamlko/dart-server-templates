@@ -28,6 +28,6 @@ void handleRequest(HttpRequest request) {
   // Handle different HTTP requests here
   request.response
     ..headers.contentType = ContentType.html
-    ..write('Hello world: ${dart_server_templates.calculate()}!')
+    ..write('Hello world: ${dart_server_templates.calculate(5,10)}!')
     ..close();
 }
