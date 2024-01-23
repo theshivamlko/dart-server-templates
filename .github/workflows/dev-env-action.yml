@@ -36,7 +36,7 @@ jobs:
     - name: Caching dependecies  
       uses: actions/cache@v4
       with:
-         path: ~/.dart-sdk
+         path: ~/.pub-cache
          key: dart-sdk-${{hashFiles('**/pubspec.lock')}} 
           #hasfile used if dependencies changed,
            #  folder will change and again download new dependencies
@@ -79,7 +79,7 @@ jobs:
       - name: Caching dependecies  
         uses: actions/cache@v4
         with:
-         path: ~/.dart-sdk
+         path: ~/.pub-cache
          key: dart-sdk-${{hashFiles('**/pubspec.lock')}}   
         # no need of with as by default same repo will be used where yml file is
       - name: Setup Dart SDK 3.2
