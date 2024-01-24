@@ -20,10 +20,11 @@ env: # global variables
   DB_NAME: svarupa-db
   APP_VERSION: 1.3.0
   ANDROID_APP_ID: 1:663276069652:android:a9f2629ec50bc9743d9801
-  IOS_APP_ID: 1:66327606 9652:ios:da21898f21f9d9ed3d9801
+  GOOGLE_JSON_FILE: ${{secrets.GOOGLE_JSON_FILE}} # will come from environment if set
  
 jobs:  
   DevServer: # Custom Jobs name
+   environment: Development
    env: # local variables
       db-username: rootUser
       db-password: rootPass@123
