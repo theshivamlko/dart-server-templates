@@ -36,12 +36,11 @@ jobs:
     - name: Print greeting  # Name of script
       id: some-id2 #id for script
       run : echo "Hello World"
-
     - name: Print Published
       if: steps.some-id2.outcome == 'success' # if previous step is success then only run this step
       run: echo "DONE Published... SUCCESS"
     - name: Print Published
-      if: steps.some-id2.outcome == 'failure' # if previous step is success then only run this step
+      if: steps.some-id2.outcome == 'failure' # if previous step is failure then only run this step
       run: echo "DONE Published... FAILURE"
 
       # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
@@ -80,6 +79,7 @@ jobs:
 
       
   DartServerDeployMacOS:
+    if: failure() # if previous job is failure then only run this job
     needs: DevServer  # waits for given job to finish
     runs-on: macos-12  # Environment to run
 
