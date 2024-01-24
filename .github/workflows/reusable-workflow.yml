@@ -9,8 +9,10 @@ on:
         default: 'Some default value'
         type: string
     outputs:
-      description: 'Some output'
-      value1: ${{jobs.ReUsableJobs.outputs.outcome}}
+      value1:
+        value: ${{jobs.ReUsableJobs.outputs.outcome}}
+        description: 'Some output'
+
 
 jobs:
   ReUsableJobs:
