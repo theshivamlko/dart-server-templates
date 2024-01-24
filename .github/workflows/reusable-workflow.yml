@@ -1,4 +1,4 @@
-name: Re-Usable Workflow
+name: ReUsable Workflow
 on:
   workflow_dispatch:
   workflow_call: # to be called from other workflow
