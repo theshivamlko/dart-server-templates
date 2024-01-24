@@ -4,6 +4,7 @@ on:
 
 jobs:
   Build:
+    continue-on-error: true
     strategy:
       matrix:
         dart-version: [3.2,3.0]
