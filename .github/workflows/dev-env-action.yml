@@ -32,11 +32,15 @@ jobs:
    runs-on: macos-12  # Environment to run
    outputs:
     abc: ${{steps.some-id1.outputs.version}}
-   steps: 
+   steps:
     - name: Print greeting  # Name of script
+      id: some-id2 #id for script
       run : echo "Hello World"
+
+      if: steps.some-id2.outcome == 'success' # if previous step is success then only run this step
     - name: Print Published
-      run: echo "DONE Published..."
+      run: echo "DONE Published... SUCCESS"
+
       # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
     - name: List all folders 
       run:  ls -alR
