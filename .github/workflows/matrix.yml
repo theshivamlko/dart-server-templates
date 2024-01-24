@@ -6,9 +6,16 @@ jobs:
   Build:
     continue-on-error: true
     strategy:
-      matrix:
+      matrix: # creates combination of all below values and run parallel
         dart-version: [3.2,3.0]
         os-version: [macos-12,ubuntu-20.04,windows-2019]
+        include: # add single combination to above matrix
+          - dart-version: 2.2
+            os-version: macos-12
+        exclude: # skip this combination from above list
+          - dart-version: 3.2
+          - os-version: macos-12
+
 
     environment: Development
     env: # local variables
