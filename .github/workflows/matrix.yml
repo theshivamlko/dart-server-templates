@@ -74,6 +74,7 @@ jobs:
     with:
       some-var3: "Some real value for re usable workflow"
 
+
   AnotherWorkflow:
     runs-on: ubuntu-20.04
     steps:

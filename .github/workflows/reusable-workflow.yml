@@ -6,7 +6,7 @@ on:
       some-var3:
         description: 'Some variable 3'
         required: true
-        default: Some default value
+        default: 'Some default value'
         type: string
     outputs:
       description: 'Some output'
