@@ -1,0 +1,12 @@
+name: Re-Usable Workflow
+on:
+  workflow_dispatch:
+  workflow_call: # to be called from other workflow
+
+
+jobs:
+  Re-UsableJobs:
+    runs-on: ubuntu-20.04
+    steps:
+     - name: Print greeting  # Name of script
+       run : echo "Hello World"

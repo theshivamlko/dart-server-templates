@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   Build:
     continue-on-error: true
     strategy:
@@ -68,5 +69,10 @@ jobs:
           echo SOME_VAR_SECRET1 ${{secrets.SOME_VAR_SECRET1}}
           echo SOME_VAR1 ${{vars.SOME_VAR1}}
 
-      # - name: "Publish JSON file"
-      #   run:
+  UsesWorkflow:
+    uses: ./.github/workflows/matrix.yml
+  AnotherWorkflow:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Print greeting  # Name of script
+        run : echo "Hello World"
