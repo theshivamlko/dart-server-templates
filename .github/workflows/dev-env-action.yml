@@ -60,7 +60,8 @@ jobs:
       uses: dart-lang/setup-dart@v1.6.0
       with: 
         sdk: stable # 3.2
-    - name: Dart Information 
+    - name: Dart Information
+      continue-on-error: true # if error comes then continue to next step
       run: dart info   
     - name: Dart Pub Get
       run: dart pub get  
@@ -79,8 +80,8 @@ jobs:
 
       
   DartServerDeployMacOS:
-    if: failure() # if previous job is failure then only run this job
     needs: DevServer  # waits for given job to finish
+    if: failure() # if previous job is failure then only run this job
     runs-on: macos-12  # Environment to run
 
       

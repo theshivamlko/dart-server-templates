@@ -1,0 +1,64 @@
+name: matrixWorkflow
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    strategy:
+      matrix:
+        dart-version: [3.2,3.0,2.8]
+        os-version: [macos-12,ubuntu-20.04,windows-2019]
+
+    environment: Development
+    env: # local variables
+      db-username: rootUser
+      db-password: rootPass@123
+
+    runs-on: ${{matrix.os-version}}  # Environment to run
+    outputs:
+      abc: ${{steps.some-id1.outputs.version}}
+    steps:
+      - name: Print greeting  # Name of script
+        id: some-id2 #id for script
+        run : echo "Hello World"
+      - name: Print Published
+        if: steps.some-id2.outcome == 'success' # if previous step is success then only run this step
+        run: echo "DONE Published... SUCCESS"
+      - name: Print Published
+        if: steps.some-id2.outcome == 'failure' # if previous step is failure then only run this step
+        run: echo "DONE Published... FAILURE"
+
+        # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
+      - name: List all folders
+        run:  ls -alR
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Caching dependecies
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/dart  # path for macOS
+          key: dart-sdk-${{hashFiles('**/pubspec.lock')}}
+            #hasfile used if dependencies changed,
+          #  folder will change and again download new dependencies
+        # no need of with as by default same repo will be used where yml file is
+      - name: Setup Dart SDK ${{matrix.dart-version}}
+        uses: dart-lang/setup-dart@v1.6.0
+        with:
+          sdk: stable # 3.2
+      - name: Dart Information
+        continue-on-error: true # if error comes then continue to next step
+        run: dart info
+      - name: Dart Pub Get
+        run: dart pub get
+      - name: Dart Test
+        run: dart test
+      - name: "Create JSON file to share to other JOBS"
+        id: some-id1
+        run: |
+          echo '{"version": "${{env.APP_VERSION}}", "name": "example"}' > output.json
+          echo "::set-output name=version::$( < output.json)"
+          echo SOME_VAR_SECRET1 ${{secrets.SOME_VAR_SECRET1}}
+          echo SOME_VAR1 ${{vars.SOME_VAR1}}
+
+      # - name: "Publish JSON file"
+      #   run:
