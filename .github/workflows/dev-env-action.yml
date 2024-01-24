@@ -16,10 +16,18 @@ on:
     paths-ignore:
       - '.github/workflows/*'  
     
-            
+env: # global variables
+  DB_NAME: svarupa-db
+  APP_VERSION: 1.3.0
+  ANDROID_APP_ID: 1:663276069652:android:a9f2629ec50bc9743d9801
+  IOS_APP_ID: 1:66327606 9652:ios:da21898f21f9d9ed3d9801
  
 jobs:  
   DevServer: # Custom Jobs name
+   env: # local variables
+      db-username: rootUser
+      db-password: rootPass@123
+
    runs-on: macos-12  # Environment to run
    outputs:
     abc: ${{steps.some-id1.outputs.version}}
@@ -54,7 +62,7 @@ jobs:
     - name: "Create JSON file to share to other JOBS"
       id: some-id1
       run: |
-          echo '{"version": "1.0.1", "name": "example"}' > output.json
+          echo '{"version": "${{env.APP_VERSION}}", "name": "example"}' > output.json
           echo "::set-output name=version::$( < output.json)"
 
     # - name: "Publish JSON file"
