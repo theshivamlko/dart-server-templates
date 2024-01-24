@@ -64,6 +64,8 @@ jobs:
       run: |
           echo '{"version": "${{env.APP_VERSION}}", "name": "example"}' > output.json
           echo "::set-output name=version::$( < output.json)"
+          echo SOME_VAR_SECRET1 ${{secrets.SOME_VAR_SECRET1}}
+          echo SOME_VAR1 ${{vars.SOME_VAR1}}
 
     # - name: "Publish JSON file"
     #   run: 
