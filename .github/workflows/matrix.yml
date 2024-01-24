@@ -70,9 +70,14 @@ jobs:
           echo SOME_VAR1 ${{vars.SOME_VAR1}}
 
   UsesWorkflow:
-    uses: ./.github/workflows/matrix.yml
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      some-var3: "Some real value for re usable workflow"
+
   AnotherWorkflow:
     runs-on: ubuntu-20.04
     steps:
       - name: Print greeting  # Name of script
         run : echo "Hello World"
+      - name: Get output
+        run: echo ${{needs.ReUsableJobs.outputs.value1}}

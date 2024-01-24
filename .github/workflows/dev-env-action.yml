@@ -128,7 +128,7 @@ jobs:
         run: echo "Publishing..."
       - uses: actions/download-artifact@v4 #download artifacts from previous jobs
         with: 
-          name: dart-server-build-file@V1
+          name: dart-server-build-file@V1  # custom artifact name to download
       - name: "Output filename"
         run: echo ${{needs.DevServer.outputs.abc}}
 

@@ -2,11 +2,24 @@ name: Re-Usable Workflow
 on:
   workflow_dispatch:
   workflow_call: # to be called from other workflow
-
+    inputs:
+      some-var3:
+        description: 'Some variable 3'
+        required: true
+        default: Some default value
+        type: string
+    outputs:
+      description: 'Some output'
+      value1: ${{jobs.ReUsableJobs.outputs.outcome}}
 
 jobs:
-  Re-UsableJobs:
+  ReUsableJobs:
+    outputs:
+      outcome: ${{steps.set-result1.outputs.value1}}
     runs-on: ubuntu-20.04
     steps:
      - name: Print greeting  # Name of script
-       run : echo "Hello World"
+       run : echo "Hello World ${{inputs.some-var3}}"
+     - name: Output files
+       id: set-result1
+       run: echo "::set-output name=value1::$( < output.json)" # to send output vai variable used in other workflow
