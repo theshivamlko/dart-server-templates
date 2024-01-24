@@ -37,11 +37,11 @@ jobs:
       id: some-id2 #id for script
       run : echo "Hello World"
 
+    - name: Print Published
       if: steps.some-id2.outcome == 'success' # if previous step is success then only run this step
-    - name: Print Published
       run: echo "DONE Published... SUCCESS"
-      if: steps.some-id2.outcome == 'failure' # if previous step is success then only run this step
     - name: Print Published
+      if: steps.some-id2.outcome == 'failure' # if previous step is success then only run this step
       run: echo "DONE Published... FAILURE"
 
       # | ls | cd dart-server-templates | echo "ABCD" > abc.txt | git add . | git commit -m "txt" | git push origin main
